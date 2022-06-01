@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch('DB_USER', 'ruby') %>
+  password: <%= ENV.fetch('DB_PASSWORD', 'rails') %>
+  host: <%= ENV.fetch('DB_HOST', '127.0.0.1') %>
+  port: <%= ENV.fetch('DB_PORT', 5432) %>
+  schema_search_path: public
+  reconnect: true
+  connect_timeout: 4
+
+test:
+  <<: *default
+  database: learn-rspec-rails_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+development:
+  <<: *default
+  database: learn-rspec-rails_development
+
+production:
+  <<: *default
+  database: learn-rspec-rails_production

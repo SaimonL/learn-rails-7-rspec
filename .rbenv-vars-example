@@ -1,0 +1,10 @@
+SECRET_KEY_BASE=651acdff430b129e57aa3705a3102ceab40df44c2b3cb1f00b28fb3a041ce3e3
+
+# Database
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=
+DB_PASSWORD=
+
+# Parallel Test
+TEST_ENV_NUMBER=2
