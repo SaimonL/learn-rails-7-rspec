@@ -41,6 +41,7 @@ group :development, :test do
   gem 'parallel_tests'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'rubocop', require: false
 end
 
 group :development do
