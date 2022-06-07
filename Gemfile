@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-gem 'rails', '~> 7.0.3'
-gem 'sprockets-rails'
+gem 'importmap-rails'
 gem 'pg'
 gem 'puma', '~> 5.0'
-gem 'importmap-rails'
+gem 'rails', '~> 7.0.3'
+gem 'sprockets-rails'
 gem 'turbo-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -22,7 +24,7 @@ gem 'stimulus-rails'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'bootsnap', require: false
 
@@ -34,7 +36,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'faker'
@@ -47,8 +49,8 @@ end
 group :development do
   gem 'guard'
   gem 'guard-rspec', require: false
-  gem 'thin'
   gem 'rack-mini-profiler'
+  gem 'thin'
   gem 'web-console'
   # gem 'spring'
 end
@@ -59,6 +61,6 @@ group :test do
   gem 'rspec-benchmark'
   gem 'rspec-its'
   gem 'rspec-wait'
-  gem 'simplecov', require: false
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', require: false
 end
