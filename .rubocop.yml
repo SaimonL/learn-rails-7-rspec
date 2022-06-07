@@ -26,6 +26,7 @@ Layout/CaseIndentation:
 Style/Documentation:
   Exclude:
     - 'app/helpers/application_helper.rb'
+    - 'config/application.rb'
 
 Metrics/BlockLength:
   Max: 32
