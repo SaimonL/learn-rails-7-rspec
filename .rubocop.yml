@@ -23,3 +23,14 @@ Layout/CaseIndentation:
 Style/Documentation:
   Exclude:
     - 'app/helpers/application_helper.rb'
+
+Metrics/BlockLength:
+  Max: 32
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/*.gemspec'
+    - 'config/routes.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/environments/*.rb'
