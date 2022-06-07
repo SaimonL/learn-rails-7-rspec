@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe '/books', type: :request do
   let(:invalid_attributes) { attributes_for(:book).merge(title: nil) }
-  
+
   describe 'GET /index' do
     before(:each) do
-      create(:book) 
+      create(:book)
       get books_url
     end
 
@@ -47,9 +49,9 @@ RSpec.describe '/books', type: :request do
   describe 'POST /create' do
     context 'with valid parameters' do
       it 'creates a new Book' do
-        expect {
+        expect do
           post books_url, params: { book: attributes_for(:book) }
-        }.to change(Book, :count).by(1)
+        end.to change(Book, :count).by(1)
       end
 
       it 'redirects to the created book' do
@@ -60,9 +62,9 @@ RSpec.describe '/books', type: :request do
 
     context 'with invalid parameters' do
       it 'does not create a new Book' do
-        expect {
+        expect do
           post books_url, params: { book: invalid_attributes }
-        }.to change(Book, :count).by(0)
+        end.to change(Book, :count).by(0)
       end
 
       it 'to be unprocessable_entity' do
@@ -100,16 +102,16 @@ RSpec.describe '/books', type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
+  describe 'DELETE /destroy' do
     let!(:book) { create(:book) }
 
-    it "destroys the requested book" do
-      expect {
+    it 'destroys the requested book' do
+      expect do
         delete book_url(book)
-      }.to change(Book, :count).by(-1)
+      end.to change(Book, :count).by(-1)
     end
 
-    it "redirects to the books list" do
+    it 'redirects to the books list' do
       delete book_url(book)
       expect(response).to redirect_to(books_url)
     end
