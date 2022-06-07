@@ -7,7 +7,7 @@ require 'spec_helper'
 require_relative '../config/environment'
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'rspec-benchmark'
 require 'database_cleaner/active_record'
@@ -50,7 +50,7 @@ RSpec.configure do |config|
       example.run
     end
   end
-  
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

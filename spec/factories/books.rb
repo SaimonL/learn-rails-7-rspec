@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :book do
-    title     { Faker::Book.title.gsub("'", '') }
+    sequence(:title) { |n| "Book #{n} Title" }
     pages     { rand(20..1000) }
     isbn      { Faker::Barcode.isbn }
     in_stock  { true }
