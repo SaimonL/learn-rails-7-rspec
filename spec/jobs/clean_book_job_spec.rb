@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 require 'rails_helper'
 
 RSpec.describe CleanBookJob, type: :job do
@@ -8,14 +10,14 @@ RSpec.describe CleanBookJob, type: :job do
     let(:perform_now) { job.perform_now }
 
     before(:each) do
-      @book = create(:book, title: title)
+      @book = create(:book, title:)
     end
 
     it 'will filter book title' do
-      expect { perform_now }.
-        to change{ @book.reload.title }.
-          from(title).
-          to('Hello')
+      expect { perform_now }
+        .to change { @book.reload.title }
+        .from(title)
+        .to('Hello')
     end
   end
 
