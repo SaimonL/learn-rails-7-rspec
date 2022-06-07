@@ -1,0 +1,21 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+  DisplayStyleGuide: true
+  ExtraDetails: true
+  SuggestExtensions:
+    rubocop-rails: [ rails ]
+    rubocop-rspec: [ rspec, rspec-rails ]
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/CaseIndentation:
+  IndentOneStep: true
+  Enabled: true
+  EnforcedStyle: end
