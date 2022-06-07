@@ -19,3 +19,7 @@ Layout/CaseIndentation:
   IndentOneStep: true
   Enabled: true
   EnforcedStyle: end
+
+Style/Documentation:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
