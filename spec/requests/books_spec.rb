@@ -8,7 +8,7 @@ RSpec.describe '/books', type: :request do
   describe 'GET /index' do
     before(:each) do
       create(:book)
-      get books_url
+      get books_path
     end
 
     it 'renders a successful response' do
@@ -19,7 +19,7 @@ RSpec.describe '/books', type: :request do
   describe 'GET /show' do
     before(:each) do
       book = create(:book)
-      get book_url(book)
+      get book_path(book)
     end
 
     it 'renders a successful response' do
@@ -28,7 +28,7 @@ RSpec.describe '/books', type: :request do
   end
 
   describe 'GET /new' do
-    before { get new_book_url }
+    before { get new_book_path }
 
     it 'renders a successful response' do
       expect(response).to be_successful
@@ -38,7 +38,7 @@ RSpec.describe '/books', type: :request do
   describe 'GET /edit' do
     before(:each) do
       book = create(:book)
-      get edit_book_url(book)
+      get edit_book_path(book)
     end
 
     it 'renders a successful response' do
@@ -50,25 +50,25 @@ RSpec.describe '/books', type: :request do
     context 'with valid parameters' do
       it 'creates a new Book' do
         expect do
-          post books_url, params: { book: attributes_for(:book) }
+          post books_path, params: { book: attributes_for(:book) }
         end.to change(Book, :count).by(1)
       end
 
       it 'redirects to the created book' do
-        post books_url, params: { book: attributes_for(:book) }
-        expect(response).to redirect_to(book_url(Book.last))
+        post books_path, params: { book: attributes_for(:book) }
+        expect(response).to redirect_to(book_path(Book.last))
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new Book' do
         expect do
-          post books_url, params: { book: invalid_attributes }
+          post books_path, params: { book: invalid_attributes }
         end.to change(Book, :count).by(0)
       end
 
       it 'to be unprocessable_entity' do
-        post books_url, params: { book: invalid_attributes }
+        post books_path, params: { book: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -80,15 +80,15 @@ RSpec.describe '/books', type: :request do
       let(:new_title) { Faker::Book.title }
 
       it 'updates the requested book' do
-        patch book_url(book), params: { book: { title: new_title } }
+        patch book_path(book), params: { book: { title: new_title } }
         book.reload
         expect(book.title).to eq(new_title)
       end
 
       it 'redirects to the book' do
-        patch book_url(book), params: { book: { title: new_title } }
+        patch book_path(book), params: { book: { title: new_title } }
         book.reload
-        expect(response).to redirect_to(book_url(book))
+        expect(response).to redirect_to(book_path(book))
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe '/books', type: :request do
       let!(:book) { create(:book) }
 
       it 'renders a successful response (i.e. to display the \'edit\' template)' do
-        patch book_url(book), params: { book: { title: nil } }
+        patch book_path(book), params: { book: { title: nil } }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -107,13 +107,13 @@ RSpec.describe '/books', type: :request do
 
     it 'destroys the requested book' do
       expect do
-        delete book_url(book)
+        delete book_path(book)
       end.to change(Book, :count).by(-1)
     end
 
     it 'redirects to the books list' do
-      delete book_url(book)
-      expect(response).to redirect_to(books_url)
+      delete book_path(book)
+      expect(response).to redirect_to(books_path)
     end
   end
 end
