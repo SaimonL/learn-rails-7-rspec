@@ -6,6 +6,7 @@
 .directory
 .byebug_history
 ._.DS_Store
+.DS_Store
 *.swp
 
 
