@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'books/index', type: :feature do
-  before(:all)  { @books = [create(:book), create(:book)] }
+  before(:all) do
+    Book.delete_all
+    @books = [create(:book), create(:book)]
+  end
+
   before(:each) { visit books_path }
 
   describe 'with headers' do
