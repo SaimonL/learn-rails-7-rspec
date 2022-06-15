@@ -3,9 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'books/show', type: :feature do
-  let!(:book) { create(:book) }
-
-  before(:each) { visit book_path(book) }
+  before(:all) { @book = create(:book) }
+  before(:each) { visit book_path(@book) }
 
   describe 'with labels' do
     it 'renders Title header' do
@@ -27,22 +26,22 @@ RSpec.describe 'books/show', type: :feature do
 
   describe 'with book' do
     it 'renders book title' do
-      assert_text book.title.capitalize, count: 1
+      assert_text @book.title.capitalize, count: 1
     end
 
     it 'renders book pages' do
-      assert_text book.pages.to_s
+      assert_text @book.pages.to_s
     end
 
     it 'renders book isbn' do
-      assert_text book.isbn, count: 1
+      assert_text @book.isbn, count: 1
     end
   end
 
   describe 'with links' do
     subject { page }
 
-    it { is_expected.to have_link('Edit this book', href: edit_book_path(book)) }
+    it { is_expected.to have_link('Edit this book', href: edit_book_path(@book)) }
     it { is_expected.to have_link('Back to books', href: books_path) }
     it { is_expected.to have_button('Destroy this book') }
 
@@ -64,6 +63,9 @@ RSpec.describe 'books/show', type: :feature do
 
     context 'with Destroy this book button' do
       before(:each) do
+        book = create(:book)
+        visit book_path(book)
+
         click_button 'Destroy this book'
         wait_for { current_path }.to eq(books_path)
       end
