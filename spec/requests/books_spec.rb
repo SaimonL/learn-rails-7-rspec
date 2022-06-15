@@ -5,11 +5,10 @@ require 'rails_helper'
 RSpec.describe '/books', type: :request do
   let(:invalid_attributes) { attributes_for(:book).merge(title: nil) }
 
+  before(:all) { @book = create(:book) }
+
   describe 'GET /index' do
-    before(:each) do
-      create(:book)
-      get books_path
-    end
+    before(:each) { get books_path }
 
     it 'renders a successful response' do
       expect(response).to be_successful
@@ -17,10 +16,7 @@ RSpec.describe '/books', type: :request do
   end
 
   describe 'GET /show' do
-    before(:each) do
-      book = create(:book)
-      get book_path(book)
-    end
+    before(:each) { get book_path(@book) }
 
     it 'renders a successful response' do
       expect(response).to be_successful
@@ -36,10 +32,7 @@ RSpec.describe '/books', type: :request do
   end
 
   describe 'GET /edit' do
-    before(:each) do
-      book = create(:book)
-      get edit_book_path(book)
-    end
+    before(:each) { get edit_book_path(@book) }
 
     it 'renders a successful response' do
       expect(response).to be_successful

@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'books/index', type: :feature do
-  let!(:books) { [create(:book), create(:book)] }
-
+  before(:all)  { @books = [create(:book), create(:book)] }
   before(:each) { visit books_path }
 
   describe 'with headers' do
@@ -30,7 +29,7 @@ RSpec.describe 'books/index', type: :feature do
   end
 
   describe 'with first book' do
-    let(:book) { books.first }
+    let(:book) { @books.first }
 
     it 'renders book title' do
       assert_text book.title.capitalize, count: 1
@@ -50,7 +49,7 @@ RSpec.describe 'books/index', type: :feature do
   end
 
   describe 'with second book' do
-    let(:book) { books.second }
+    let(:book) { @books.second }
 
     it 'renders book title' do
       assert_text book.title.capitalize, count: 1
