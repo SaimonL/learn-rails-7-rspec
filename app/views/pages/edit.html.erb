@@ -1,0 +1,10 @@
+<h1>Editing page</h1>
+
+<%= render "form", page: @page %>
+
+<br>
+
+<div>
+  <%= link_to "Show this page", [@book, @page] %> |
+  <%= link_to "Back to pages", book_pages_path(@book) %>
+</div>
